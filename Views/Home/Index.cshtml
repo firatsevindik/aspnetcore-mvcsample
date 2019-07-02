@@ -1,0 +1,26 @@
+﻿@model List<BlogModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@ViewData["SessionId"]
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-12">
+                    <h2>
+                        <a asp-action="Detail" asp-controller="Home" asp-route-id="@item.Id">@item.Title</a>
+                    </h2>
+                    <p>@item.Abstract</p>
+                    <code>@item.CreatedDate</code>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-4">
+        @Html.Partial("Category", ViewData["Categories"])
+    </div>
+</div>
